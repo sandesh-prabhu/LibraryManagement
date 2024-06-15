@@ -1,0 +1,568 @@
+{
+	"info": {
+		"_postman_id": "1a616628-e1a7-4ec4-8cda-6b444a6e9adf",
+		"name": "LibraryManagement",
+		"description": "admin details:\n\nname: admin\n\nemail: [admin@admin.com](https://mailto:admin@admin.com)\n\npassword: admin@123",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22757168"
+	},
+	"item": [
+		{
+			"name": "signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"admin\",\r\n    \"email\":\"admin@admin.com\",\r\n    \"password\":\"admin@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/user/signup",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"signup"
+					]
+				},
+				"description": "This API is to signup through name, email and password.\n\nname is required.\n\nemail should be of valid format.\n\npassword should be minimun 8 characters long.\n\nAll are required."
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"admin@admin.com\",\r\n    \"password\":\"admin@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/user/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"login"
+					]
+				},
+				"description": "This API is to login through email and password.\n\nEmail should be of valid format.\n\nPassword should be minimun 8 characters long.\n\nBoth are required."
+			},
+			"response": []
+		},
+		{
+			"name": "refresh",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/user/refresh",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"refresh"
+					]
+				},
+				"description": "Requires refresh token in cookies.\n\nDuring signup and login a refresh token is generated and sent in response cookie with lifespan of 7days. When the access token gets expired in 15 mins, this api is hit using the refresh token in cookie to get new accesstoken."
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjZjNDc5MjZlNWVkY2Q5NjhiNDY3ZDYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTg0MjQ1MjMsImV4cCI6MTcxODQyNTQyM30.rXykDar_oTJ3VV9ytHqtwGd91imzBdryh3GXKqBY47k",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/user/logout",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"logout"
+					]
+				},
+				"description": "This API is to logout the member.\n\nOnce logout is initiated, the accessToken is blacklisted until it expires and also refreshToken is removed and invalidated."
+			},
+			"response": []
+		},
+		{
+			"name": "add Book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjZjNDc5MjZlNWVkY2Q5NjhiNDY3ZDYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTg0MjA3MTgsImV4cCI6MTcxODQyMTYxOH0.vLynyx3y8RYo5_xYyvuIZW5Y2Qiczkso0NGumDxykck",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"title8\",\r\n    \"author\":\"author6\",\r\n    \"isbn\":\"978-3-16-148410-0\",\r\n    \"publicationDate\": \"2024-01-30\",\r\n    \"genre\": \"crime\",\r\n    \"numberOfCopies\": 5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/book/add",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"book",
+						"add"
+					]
+				},
+				"description": "This API is to add book by the admin.\n\nadmin accessToken is required in Bearer token.\n\ntitle, author, usbn and genre should be string.\n\npublicationDate should of format YYYY-MM-DD\n\nnumberOfCopies should be positive integer.\n\nAll are required."
+			},
+			"response": []
+		},
+		{
+			"name": "edit Book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjZjNDc5MjZlNWVkY2Q5NjhiNDY3ZDYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTg0MjE2NTksImV4cCI6MTcxODQyMjU1OX0.D3RhJwM9Et6_mJ4FtvRCDomHkLkOyl1WSxTuK6mCp9w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"title8\",\r\n    \"author\":\"author6\",\r\n    \"isbn\":\"978-3-16-148410-0\",\r\n    \"publicationDate\": \"2024-01-30\",\r\n    \"genre\": \"crime\",\r\n    \"numberOfCopies\": 5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/book/edit/666d070a0f288d1b12b8855e",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"book",
+						"edit",
+						"666d070a0f288d1b12b8855e"
+					]
+				},
+				"description": "This API is to add book by the admin.\n\nbookId is required in params.\n\nadmin accessToken is required in Bearer token.\n\ntitle, author, usbn and genre should be string.\n\npublicationDate should of format YYYY-MM-DD\n\nnumberOfCopies should be positive integer.\n\nAll fields are optional."
+			},
+			"response": []
+		},
+		{
+			"name": "delete Book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjZjNDc5MjZlNWVkY2Q5NjhiNDY3ZDYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTg0MzA0NTgsImV4cCI6MTcxODQzMTM1OH0.YZNrtkSB9_Bo04pLHYmvrm6sncQeq-JijyRjwUI_mIA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/book/delete/666c619bae14f27e68ead1c1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"book",
+						"delete",
+						"666c619bae14f27e68ead1c1"
+					]
+				},
+				"description": "This API is to delete book by the admin.\n\nbookId is required in params.\n\nadmin accessToken is required in Bearer token."
+			},
+			"response": []
+		},
+		{
+			"name": "all Books",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjZjNDc5MjZlNWVkY2Q5NjhiNDY3ZDYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTgzODgyODAsImV4cCI6MTcxODM4OTE4MH0.oAlJtmhwsujp1Du-DOzySmDnfc0D462JddrvJrZ9O1g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/book/all?page=1&limit=10&genre=crime&author=author&title=title",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"book",
+						"all"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						},
+						{
+							"key": "genre",
+							"value": "crime"
+						},
+						{
+							"key": "author",
+							"value": "author"
+						},
+						{
+							"key": "title",
+							"value": "title"
+						}
+					]
+				},
+				"description": "This API is to get list of books using filters and pagination.\n\nmember accessToken is required in Bearer token.\n\npage should be positive integer.\n\nlimit should be positive integer\n\ngenre, author and title should be string\n\nall params are optional"
+			},
+			"response": []
+		},
+		{
+			"name": "borrow Book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjZjNDc5MjZlNWVkY2Q5NjhiNDY3ZDYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTg0MjcwNDUsImV4cCI6MTcxODQyNzk0NX0.ta7UAyzVNR4GB6prY6R8yB49Uy80qtZlY91VAmUrRDY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bookId\": \"666c619bae14f27e68ead1c1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/library/borrow-book",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"library",
+						"borrow-book"
+					]
+				},
+				"description": "This API is to borrow the book.\n\nmember accessToken is required in Bearer token.\n\nbookId is required and must be objectId in string format."
+			},
+			"response": []
+		},
+		{
+			"name": "return Book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjZjNDc5MjZlNWVkY2Q5NjhiNDY3ZDYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTgzODgyODAsImV4cCI6MTcxODM4OTE4MH0.oAlJtmhwsujp1Du-DOzySmDnfc0D462JddrvJrZ9O1g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bookId\": \"666c6188ae14f27e68ead1bf\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/library/return-book",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"library",
+						"return-book"
+					]
+				},
+				"description": "This API is to return the book.\n\nmember accessToken is required in Bearer token.\n\nbookId is required and must be objectId in string format."
+			},
+			"response": []
+		},
+		{
+			"name": "history",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjZjNDc5MjZlNWVkY2Q5NjhiNDY3ZDYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTg0MjQ1MjMsImV4cCI6MTcxODQyNTQyM30.rXykDar_oTJ3VV9ytHqtwGd91imzBdryh3GXKqBY47k",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/library/borrow-history",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"library",
+						"borrow-history"
+					]
+				},
+				"description": "This API is to get borrow history of the login member.\n\nmember accessToken is required in Bearer token."
+			},
+			"response": []
+		},
+		{
+			"name": "most borrowed books",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/library/most-borrowed-books",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"library",
+						"most-borrowed-books"
+					]
+				},
+				"description": "This API is to get list of most borrowed books."
+			},
+			"response": []
+		},
+		{
+			"name": "active members",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/library/active-members",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"library",
+						"active-members"
+					]
+				},
+				"description": "This API is to get the list of most active members who borrows books"
+			},
+			"response": []
+		},
+		{
+			"name": "availability",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/library/book-availability",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"library",
+						"book-availability"
+					]
+				},
+				"description": "This API is to get the book stats/ availability of books"
+			},
+			"response": []
+		}
+	]
+}
